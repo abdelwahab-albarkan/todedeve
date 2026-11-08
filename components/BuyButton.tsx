@@ -1,5 +1,5 @@
 import React from 'react';
-import { GUMROAD_URL } from '@/lib/constants';
+import { PRICING_ANCHOR, CHECKOUT_LINK_PROPS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
 interface BuyButtonProps {
@@ -11,15 +11,15 @@ interface BuyButtonProps {
 }
 
 /**
- * Gumroad checkout button. The `gumroad-button` class lets gumroad.js
- * open the overlay checkout instead of navigating away.
+ * Primary purchase CTA. Scrolls to the pricing card by default, where the
+ * buyer picks a package and checks out on Gumroad.
  */
 export function BuyButton({
   children = 'Buy Now',
   className,
   variant = 'primary',
   size = 'md',
-  href = GUMROAD_URL,
+  href = PRICING_ANCHOR,
 }: BuyButtonProps) {
   const variants = {
     primary: 'btn-primary',
@@ -34,7 +34,7 @@ export function BuyButton({
   };
 
   return (
-    <a href={href} className={cn('gumroad-button btn group', variants[variant], sizes[size], className)}>
+    <a href={href} {...(href.startsWith('http') ? CHECKOUT_LINK_PROPS : {})} className={cn('btn group', variants[variant], sizes[size], className)}>
       {children}
     </a>
   );

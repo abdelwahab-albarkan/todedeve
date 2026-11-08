@@ -11,7 +11,7 @@ import {
   PRODUCT_PRICE,
   FOOTER_LINKS,
   CONTACT_EMAIL,
-  GUMROAD_URL,
+  PRICING_ANCHOR,
 } from '@/lib/constants';
 import { BrandMark } from '@/components/Navbar';
 
@@ -36,7 +36,7 @@ const COLUMNS = [
     title: 'Support',
     links: [
       { label: 'Contact', href: `mailto:${CONTACT_EMAIL}` },
-      { label: 'Buy on Gumroad', href: GUMROAD_URL },
+      { label: 'Buy on Gumroad', href: PRICING_ANCHOR },
     ],
   },
 ];
@@ -84,7 +84,7 @@ export function Footer() {
               </ul>
             </div>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <a href={GUMROAD_URL} className="gumroad-button btn btn-primary btn-lg group">
+              <a href={PRICING_ANCHOR} className="btn btn-primary btn-lg group">
                 Get it — from {PRODUCT_PRICE}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
@@ -125,7 +125,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className={`${link.href === GUMROAD_URL ? 'gumroad-button ' : ''}group inline-flex items-center transition-colors hover:text-zinc-900 dark:hover:text-white`}
+                      className={`group inline-flex items-center transition-colors hover:text-zinc-900 dark:hover:text-white`}
                     >
                       <span className="h-px w-0 bg-orange-500 transition-all duration-200 group-hover:mr-2 group-hover:w-3" />
                       {link.label}

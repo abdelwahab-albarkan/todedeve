@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
-import Script from 'next/script';
 import '@/app/globals.css';
 import { PRODUCT_NAME, PRODUCT_TAGLINE } from '@/lib/constants';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -37,8 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
-        {/* Gumroad Overlay Checkout Script */}
-        <Script src="https://gumroad.com/js/gumroad.js" strategy="lazyOnload" />
       </head>
       <body id="top" className="min-h-screen bg-background text-foreground antialiased font-sans">
         <ThemeProvider

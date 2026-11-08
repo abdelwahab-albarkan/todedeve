@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Check, ArrowUpRight, Plus, Minus } from 'lucide-react';
 import {
   PRODUCT_NAME,
-  GUMROAD_URL,
   PRICING_MATRIX,
   PRICING_INCLUDED_ITEMS,
 } from '@/lib/constants';
@@ -18,10 +17,7 @@ export function Pricing() {
   const [compareExpanded, setCompareExpanded] = useState<boolean>(false);
 
   // Retrieve dynamic pricing from constants matrix
-  const currentPackage = PRICING_MATRIX[selectedPeriod]?.[selectedAccounts] || {
-    price: '$79.99',
-    priceNumber: 79.99,
-  };
+  const currentPackage = PRICING_MATRIX[selectedPeriod]?.[selectedAccounts] || PRICING_MATRIX[12][1];
 
   const periodOptions: { value: PeriodType; label: string; recommended?: boolean }[] = [
     { value: 3, label: 'months' },
@@ -222,8 +218,10 @@ export function Pricing() {
               {/* Action Button & Note */}
               <div className="mt-8 pt-4">
                 <a
-                  href={GUMROAD_URL}
-                  className="gumroad-button btn btn-primary btn-lg group w-full"
+                  href={currentPackage.checkoutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-lg group w-full"
                 >
                   <span>Buy now · {currentPackage.price}</span>
                   <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
@@ -232,7 +230,9 @@ export function Pricing() {
                 <p className="mt-3 text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed text-center">
                   Opens Gumroad&apos;s secure checkout for &ldquo;{PRODUCT_NAME} — {selectedPeriod} Months — {selectedAccounts} {selectedAccounts === 1 ? 'Developer' : 'Developers'}&rdquo;. Gumroad processes the payment and delivers the files.{' '}
                   <a
-                    href={GUMROAD_URL}
+                    href={currentPackage.checkoutUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-orange-600 dark:text-orange-400 underline underline-offset-2 hover:opacity-80"
                   >
                     View on Gumroad

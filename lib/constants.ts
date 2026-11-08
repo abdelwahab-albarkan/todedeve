@@ -15,10 +15,18 @@ export const BUY_BUTTON_TEXT = "Buy · from $39.99";
 export const VERSION_BADGE = "v1.0.0 · Now available";
 
 /**
- * Replace this with your actual Gumroad product link:
- * Example: "https://username.gumroad.com/l/product-id"
+ * Default Gumroad direct checkout link (?wanted=true skips the product page).
+ * Used by the generic "Buy · from $39.99" buttons, so it points to the
+ * $39.99 package (3 months · 1 developer). Per-package links live in
+ * PRICING_MATRIX[period][seats].checkoutUrl.
  */
-export const GUMROAD_URL = "https://gumroad.com/l/your-product-slug";
+export const GUMROAD_URL = "https://digitalservice02001.gumroad.com/l/wbcem?wanted=true";
+
+/** In-page target for the generic "Buy" buttons: they scroll to the pricing card. */
+export const PRICING_ANCHOR = "#pricing";
+
+/** Anchor props for every Gumroad checkout link. */
+export const CHECKOUT_LINK_PROPS = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export const HERO_HEADLINE = "The ultimate SaaS dashboard UI kit for modern developers.";
 export const HERO_SUBHEADLINE = 
@@ -162,24 +170,24 @@ export const SCREENSHOTS_LIST: ScreenshotItem[] = [
   },
 ];
 
-export const PRICING_MATRIX: Record<number, Record<number, { price: string; priceNumber: number }>> = {
+export const PRICING_MATRIX: Record<number, Record<number, { price: string; priceNumber: number; checkoutUrl: string }>> = {
   3: {
-    1: { price: "$39.99", priceNumber: 39.99 },
-    2: { price: "$59.99", priceNumber: 59.99 },
-    3: { price: "$79.99", priceNumber: 79.99 },
-    4: { price: "$99.99", priceNumber: 99.99 },
+    1: { price: "$39.99", priceNumber: 39.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/wbcem?wanted=true" },
+    2: { price: "$59.99", priceNumber: 59.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/ngqqte?wanted=true" },
+    3: { price: "$79.99", priceNumber: 79.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/fhcyij?wanted=true" },
+    4: { price: "$99.99", priceNumber: 99.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/lrcxxj?wanted=true" },
   },
   6: {
-    1: { price: "$56.99", priceNumber: 56.99 },
-    2: { price: "$84.99", priceNumber: 84.99 },
-    3: { price: "$109.99", priceNumber: 109.99 },
-    4: { price: "$134.99", priceNumber: 134.99 },
+    1: { price: "$56.99", priceNumber: 56.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/dqprug?wanted=true" },
+    2: { price: "$84.99", priceNumber: 84.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/ykeoy?wanted=true" },
+    3: { price: "$109.99", priceNumber: 109.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/oqhryi?wanted=true" },
+    4: { price: "$134.99", priceNumber: 134.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/dhiqop?wanted=true" },
   },
   12: {
-    1: { price: "$79.99", priceNumber: 79.99 },
-    2: { price: "$119.99", priceNumber: 119.99 },
-    3: { price: "$149.99", priceNumber: 149.99 },
-    4: { price: "$179.99", priceNumber: 179.99 },
+    1: { price: "$79.99", priceNumber: 79.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/pszilt?wanted=true" },
+    2: { price: "$119.99", priceNumber: 119.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/gnbvsds?wanted=true" },
+    3: { price: "$149.99", priceNumber: 149.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/niitbf?wanted=true" },
+    4: { price: "$179.99", priceNumber: 179.99, checkoutUrl: "https://digitalservice02001.gumroad.com/l/pmrkx?wanted=true" },
   },
 };
 

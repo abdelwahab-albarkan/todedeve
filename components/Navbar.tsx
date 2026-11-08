@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight, PlayCircle } from 'lucide-react';
-import { BRAND_NAME, PRODUCT_NAME, BUY_BUTTON_TEXT, NAV_LINKS, GUMROAD_URL } from '@/lib/constants';
+import { BRAND_NAME, PRODUCT_NAME, BUY_BUTTON_TEXT, NAV_LINKS, PRICING_ANCHOR } from '@/lib/constants';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
 
@@ -129,9 +129,9 @@ export function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
-          {/* Visibility lives on the wrapper: gumroad.js's overlay CSS forces display on .gumroad-button */}
+          {/* Visibility lives on the wrapper so the button's own display can't override `hidden` */}
           <span className="hidden sm:inline-flex">
-            <a href={GUMROAD_URL} className="gumroad-button btn btn-primary btn-sm whitespace-nowrap">
+            <a href={PRICING_ANCHOR} className="btn btn-primary btn-sm whitespace-nowrap">
               <span>{BUY_BUTTON_TEXT}</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
@@ -182,10 +182,20 @@ export function Navbar() {
             Live demo
           </Link>
           <a
-            href={GUMROAD_URL}
-            onClick={() => setOpen(false)}
+            href={PRICING_ANCHOR}
+            onClick={(e) => {
+              // The open menu locks body scroll, which blocks the anchor jump:
+              // close it, release the lock, then scroll (CSS decides smooth vs reduced-motion).
+              e.preventDefault();
+              setOpen(false);
+              document.body.style.overflow = '';
+              requestAnimationFrame(() => {
+                document.querySelector(PRICING_ANCHOR)?.scrollIntoView();
+                history.replaceState(null, '', PRICING_ANCHOR);
+              });
+            }}
             tabIndex={open ? 0 : -1}
-            className="gumroad-button btn btn-primary btn-md"
+            className="btn btn-primary btn-md"
           >
             {BUY_BUTTON_TEXT}
           </a>
