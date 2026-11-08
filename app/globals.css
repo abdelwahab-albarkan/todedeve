@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0f1626;
+    --brand: 249 115 22; /* #F97316 */
+    --brand-2: 245 158 11; /* #F59E0B */
+    --nav-h: 4.5rem;
+  }
+
+  .dark {
+    --background: #080c14;
+    --foreground: #f1f5f9;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 1rem);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgb(var(--brand) / 0.85);
+    color: #fff;
+  }
+
+  /* Accessible focus styling */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid rgb(var(--brand));
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  /* Slim scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(100 116 139 / 0.4) transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ------------------------------------------------------------------ */
+  /* Buttons                                                             */
+  /* ------------------------------------------------------------------ */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-semibold
+      transition-all duration-200 select-none cursor-pointer
+      active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-sm {
+    @apply h-9 px-4 text-sm;
+  }
+  .btn-md {
+    @apply h-11 px-5 text-sm;
+  }
+  .btn-lg {
+    @apply px-7 text-base;
+    height: 3.25rem;
+  }
+
+  /* Primary: warm gradient + glow + shine sweep */
+  .btn-primary {
+    @apply overflow-hidden text-white;
+    background-image: linear-gradient(135deg, #fb923c 0%, #f97316 45%, #ea580c 100%);
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.25) inset,
+      0 8px 24px -8px rgb(var(--brand) / 0.6),
+      0 0 0 1px rgb(234 88 12 / 0.6);
+  }
+  .btn-primary::after {
+    content: '';
+    @apply pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.35), transparent);
+  }
+  .btn-primary:hover {
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.3) inset,
+      0 14px 34px -10px rgb(var(--brand) / 0.75),
+      0 0 0 1px rgb(234 88 12 / 0.8);
+    transform: translateY(-1px);
+  }
+  .btn-primary:hover::after {
+    @apply opacity-100;
+    animation: shimmer 1.1s ease-out;
+  }
+
+  /* Secondary: glass */
+  .btn-secondary {
+    @apply border border-zinc-200 bg-white/70 text-zinc-900 backdrop-blur
+      hover:border-zinc-300 hover:bg-white
+      dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-100
+      dark:hover:border-white/20 dark:hover:bg-white/[0.08];
+    box-shadow: 0 1px 0 0 rgb(255 255 255 / 0.06) inset;
+  }
+
+  /* Ghost */
+  .btn-ghost {
+    @apply text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900
+      dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:hover:text-white;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Section header pieces                                               */
+  /* ------------------------------------------------------------------ */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-orange-500/25 bg-orange-500/10 px-3 py-1
+      font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-orange-600 dark:text-orange-400;
+  }
+  .section-title {
+    @apply mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl dark:text-white text-balance;
+  }
+  .section-lead {
+    @apply mt-4 text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400 text-pretty;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(100deg, #fdba74 0%, #f97316 40%, #f59e0b 100%);
+  }
+
+  /* Card with soft gradient border */
+  .card-glow {
+    @apply relative rounded-2xl border border-zinc-200 bg-white transition-all duration-300
+      dark:border-white/[0.07] dark:bg-zinc-900/60;
+  }
+  .card-glow::before {
+    content: '';
+    @apply pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition-opacity duration-300;
+    padding: 1px;
+    background: linear-gradient(140deg, rgb(var(--brand) / 0.7), transparent 45%, rgb(168 85 247 / 0.5));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .card-glow:hover::before {
+    @apply opacity-100;
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(15, 22, 38, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 22, 38, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .dark .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(241, 245, 249, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(241, 245, 249, 0.035) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
