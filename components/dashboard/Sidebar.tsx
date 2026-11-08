@@ -49,7 +49,7 @@ export function Sidebar({ mobileOpen = false, onCloseMobile }: SidebarProps) {
   };
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-[#080C14] border-r border-[#151F32] text-zinc-300 w-64 select-none">
+    <div className="flex flex-col h-full max-h-[100dvh] overflow-y-auto overscroll-contain no-scrollbar bg-[#080C14] border-r border-[#151F32] text-zinc-300 w-64 max-w-[85vw] select-none">
       
       {/* 1. Brand Logo */}
       <div className="px-6 pt-6 pb-5 flex items-center justify-between border-b border-[#151F32]/60">
@@ -104,7 +104,7 @@ export function Sidebar({ mobileOpen = false, onCloseMobile }: SidebarProps) {
       </div>
 
       {/* 3. Navigation Links */}
-      <div className="flex-1 px-4 py-4 space-y-1.5 overflow-y-auto scrollbar-none">
+      <div className="flex-1 px-4 py-4 space-y-1.5">
         {navItems.map((item) => {
           const active = isItemActive(item.href, item.exact);
           const Icon = item.icon;
@@ -142,7 +142,7 @@ export function Sidebar({ mobileOpen = false, onCloseMobile }: SidebarProps) {
       </div>
 
       {/* 4. Bottom Pro Plan Card */}
-      <div className="p-4 m-4 rounded-2xl border border-orange-500/30 bg-gradient-to-b from-orange-950/20 to-[#0D1424] shadow-glow-orange/50">
+      <div className="shrink-0 p-4 m-4 rounded-2xl border border-orange-500/30 bg-gradient-to-b from-orange-950/20 to-[#0D1424] shadow-glow-orange/50">
         <div className="flex items-center gap-2 mb-1.5 text-amber-400 font-bold text-sm">
           <Crown className="w-4 h-4" />
           <span>{PRO_PLAN_INFO.planName}</span>

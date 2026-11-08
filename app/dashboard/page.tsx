@@ -186,7 +186,7 @@ export default function DashboardOverviewPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
+            <table className="w-full min-w-[560px] text-left text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-[#1E293B] text-[11px] font-mono text-zinc-500">
                   <th className="py-2.5 px-3">Project</th>

@@ -238,11 +238,11 @@ export default function DashboardAnalyticsPage() {
             {PROJECTS_LIST.slice(0, 3).map((p) => (
               <div
                 key={p.id}
-                className="flex items-center justify-between p-3.5 rounded-xl bg-[#10172A] border border-[#151F32] hover:border-amber-500/30 transition-colors"
+                className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl bg-[#10172A] border border-[#151F32] hover:border-amber-500/30 transition-colors"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 flex-1 basis-40 items-center gap-3">
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-xs ${
+                    className={`w-9 h-9 shrink-0 rounded-xl flex items-center justify-center font-bold text-white text-xs ${
                       p.color === 'blue'
                         ? 'bg-sky-600'
                         : p.color === 'green'
@@ -252,14 +252,14 @@ export default function DashboardAnalyticsPage() {
                   >
                     {p.title.charAt(0)}
                   </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-white">{p.title}</h3>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold text-white truncate">{p.title}</h3>
                     <p className="text-[11px] font-mono text-zinc-400">{p.techStack}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-24 hidden sm:block">
+                <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+                  <div className="w-16 xl:w-24 hidden sm:block">
                     <div className="text-[10px] font-mono text-right text-zinc-300 font-bold mb-1">
                       {p.progress}%
                     </div>
@@ -271,7 +271,7 @@ export default function DashboardAnalyticsPage() {
                     </div>
                   </div>
 
-                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                  <span className="whitespace-nowrap px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
                     {p.status}
                   </span>
 

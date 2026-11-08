@@ -103,7 +103,7 @@ export function Screenshots() {
 
         {/* Global Live Demo CTA */}
         <div className="mt-14 text-center">
-          <Link href="/dashboard" className="btn btn-primary btn-lg group">
+          <Link href="/dashboard" className="btn btn-primary btn-lg group w-full sm:w-auto">
             <span>Launch Complete Dashboard Demo</span>
             <ExternalLink className="h-4 w-4" />
           </Link>

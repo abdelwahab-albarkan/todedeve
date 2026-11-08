@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Settings,
   User,
@@ -20,7 +20,10 @@ import {
 import { useTheme } from 'next-themes';
 
 export default function SettingsCustomizationPage() {
-  const { theme, setTheme } = useTheme();
+  const { theme: rawTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const theme = mounted ? rawTheme : undefined;
 
   const [activeTab, setActiveTab] = useState<'General' | 'Team' | 'Roles' | 'Integrations' | 'Billing' | 'Appearance' | 'Notifications'>('General');
 

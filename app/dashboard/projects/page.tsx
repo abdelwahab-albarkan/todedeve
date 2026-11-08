@@ -193,7 +193,7 @@ export default function ProjectsManagementPage() {
               <div>
                 {/* Header Row: Icon, Title, Priority, More */}
                 <div className="flex items-start justify-between gap-3 mb-3">
-                  <div className="flex items-center gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
                     <div
                       className={`w-11 h-11 rounded-xl flex items-center justify-center font-bold text-white text-sm shadow-md ${
                         project.color === 'blue'
@@ -211,15 +211,15 @@ export default function ProjectsManagementPage() {
                     >
                       {project.title.charAt(0)}
                     </div>
-                    <div>
-                      <h3 className="text-base font-bold text-white group-hover:text-amber-400 transition-colors">
+                    <div className="min-w-0">
+                      <h3 className="text-base font-bold text-white group-hover:text-amber-400 transition-colors break-words leading-snug">
                         {project.title}
                       </h3>
                       <p className="text-xs font-mono text-zinc-400">{project.techStack}</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex shrink-0 items-center gap-2">
                     <span
                       className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-mono font-bold border ${priorityColor(
                         project.priority
@@ -293,7 +293,7 @@ export default function ProjectsManagementPage() {
       ) : (
         /* List View */
         <div className="rounded-2xl bg-[#0D1424] border border-[#1E293B] overflow-hidden">
-          <table className="w-full text-left text-sm">
+          <table className="w-full min-w-[560px] text-left text-sm">
             <thead>
               <tr className="border-b border-[#1E293B] text-xs font-mono text-zinc-500 bg-[#10172A]">
                 <th className="py-3 px-4">Project</th>

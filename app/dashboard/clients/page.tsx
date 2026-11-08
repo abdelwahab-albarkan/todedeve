@@ -141,19 +141,19 @@ export default function ClientsManagementPage() {
               <span>Clients List</span>
             </h2>
 
-            <div className="flex items-center gap-2">
-              <div className="relative">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div className="relative flex-1 sm:flex-none">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search clients..."
-                  className="pl-9 pr-3 py-1.5 rounded-xl bg-[#10172A] border border-[#1E293B] text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-amber-500 w-44 sm:w-56"
+                  className="pl-9 pr-3 py-1.5 rounded-xl bg-[#10172A] border border-[#1E293B] text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-amber-500 w-full sm:w-56"
                 />
               </div>
 
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#10172A] border border-[#1E293B] text-xs font-mono text-zinc-300 hover:text-white">
+              <button className="flex shrink-0 items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#10172A] border border-[#1E293B] text-xs font-mono text-zinc-300 hover:text-white">
                 <Filter className="w-3.5 h-3.5 text-amber-500" />
                 <span>Filter</span>
               </button>
@@ -161,7 +161,7 @@ export default function ClientsManagementPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
+            <table className="w-full min-w-[560px] text-left text-xs sm:text-sm">
               <thead>
                 <tr className="border-b border-[#1E293B] text-[11px] font-mono text-zinc-500 bg-[#10172A]">
                   <th className="py-2.5 px-3">Client</th>

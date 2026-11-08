@@ -39,10 +39,10 @@ export function DashboardHeader({
   ];
 
   return (
-    <header className="sticky top-0 z-20 w-full h-16 bg-[#080C14]/90 dark:bg-[#080C14]/90 backdrop-blur-md border-b border-[#151F32] px-4 sm:px-8 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-20 w-full h-16 bg-[#080C14]/90 dark:bg-[#080C14]/90 backdrop-blur-md border-b border-[#151F32] px-3 sm:px-8 flex items-center justify-between gap-2 sm:gap-4">
       
       {/* Left: Mobile Menu Toggle + Search Bar */}
-      <div className="flex items-center gap-3 flex-1 max-w-xl">
+      <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0 max-w-xl">
         <button
           onClick={onToggleMobileMenu}
           className="lg:hidden p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-[#10172A] transition-colors"
@@ -59,7 +59,7 @@ export function DashboardHeader({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={searchPlaceholder}
-            className="w-full pl-10 pr-20 py-2 rounded-full text-xs sm:text-sm bg-[#0E1526] border border-[#1E293B] text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-amber-500/70 focus:ring-1 focus:ring-amber-500/70 transition-all"
+            className="w-full pl-10 pr-3 sm:pr-20 py-2 rounded-full text-xs sm:text-sm bg-[#0E1526] border border-[#1E293B] text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-amber-500/70 focus:ring-1 focus:ring-amber-500/70 transition-all"
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-[#162136] border border-zinc-700/50 text-[10px] font-mono font-medium text-zinc-400 select-none">
             <span>Ctrl + K</span>
@@ -68,7 +68,7 @@ export function DashboardHeader({
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-2 sm:gap-3.5">
+      <div className="flex shrink-0 items-center gap-1 sm:gap-3.5">
         
         {/* Return to Sales / Landing Page Link */}
         <Link
@@ -94,7 +94,7 @@ export function DashboardHeader({
           </button>
 
           {showNotifications && (
-            <div className="absolute right-0 mt-2 w-80 rounded-2xl bg-[#0D1424] border border-[#1E293B] shadow-2xl py-2 z-50 text-xs">
+            <div className="absolute -right-16 sm:right-0 mt-2 w-[min(20rem,calc(100vw-1.5rem))] rounded-2xl bg-[#0D1424] border border-[#1E293B] shadow-2xl py-2 z-50 text-xs">
               <div className="px-4 py-2 border-b border-[#1E293B] flex items-center justify-between">
                 <span className="font-bold text-white text-sm">Notifications</span>
                 <span className="text-[10px] font-mono text-amber-500">2 new</span>

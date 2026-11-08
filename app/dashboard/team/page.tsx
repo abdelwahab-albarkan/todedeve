@@ -114,10 +114,10 @@ export default function TeamManagementPage() {
       </div>
 
       {/* 3. Section Tabs */}
-      <div className="flex items-center gap-3 pb-2 border-b border-[#1E293B]">
+      <div className="flex items-center gap-2 sm:gap-3 pb-2 border-b border-[#1E293B] overflow-x-auto no-scrollbar">
         <button
           onClick={() => setActiveTab('members')}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+          className={`inline-flex shrink-0 whitespace-nowrap items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
             activeTab === 'members'
               ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-zinc-950 shadow-sm'
               : 'text-zinc-400 hover:text-white bg-[#10172A]'
@@ -129,7 +129,7 @@ export default function TeamManagementPage() {
 
         <button
           onClick={() => setActiveTab('roles')}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+          className={`inline-flex shrink-0 whitespace-nowrap items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
             activeTab === 'roles'
               ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-zinc-950 shadow-sm'
               : 'text-zinc-400 hover:text-white bg-[#10172A]'
@@ -141,7 +141,7 @@ export default function TeamManagementPage() {
 
         <button
           onClick={() => setActiveTab('activity')}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
+          className={`inline-flex shrink-0 whitespace-nowrap items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-colors ${
             activeTab === 'activity'
               ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-zinc-950 shadow-sm'
               : 'text-zinc-400 hover:text-white bg-[#10172A]'
@@ -162,15 +162,15 @@ export default function TeamManagementPage() {
             <span>Team Members</span>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <div className="relative">
+          <div className="flex items-center gap-2.5 w-full sm:w-auto">
+            <div className="relative flex-1 sm:flex-none">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search members..."
-                className="pl-9 pr-3 py-1.5 rounded-xl bg-[#10172A] border border-[#1E293B] text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-amber-500 w-48 sm:w-64"
+                className="pl-9 pr-3 py-1.5 rounded-xl bg-[#10172A] border border-[#1E293B] text-xs text-white placeholder:text-zinc-500 focus:outline-none focus:border-amber-500 w-full sm:w-64"
               />
             </div>
 
@@ -183,7 +183,7 @@ export default function TeamManagementPage() {
 
         {/* Members Table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs sm:text-sm">
+          <table className="w-full min-w-[560px] text-left text-xs sm:text-sm">
             <thead>
               <tr className="border-b border-[#1E293B] text-[11px] font-mono text-zinc-500 bg-[#10172A]">
                 <th className="py-3 px-4">Member</th>

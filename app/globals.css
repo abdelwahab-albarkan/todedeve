@@ -69,19 +69,19 @@
   /* Buttons                                                             */
   /* ------------------------------------------------------------------ */
   .btn {
-    @apply relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-semibold
+    @apply relative inline-flex max-w-full items-center justify-center gap-2 rounded-xl font-semibold text-center
       transition-all duration-200 select-none cursor-pointer
       active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-sm {
-    @apply h-9 px-4 text-sm;
+    @apply min-h-9 px-4 py-1.5 text-sm;
   }
   .btn-md {
-    @apply h-11 px-5 text-sm;
+    @apply min-h-11 px-5 py-2 text-sm;
   }
   .btn-lg {
-    @apply px-7 text-base;
-    height: 3.25rem;
+    @apply px-7 py-2.5 text-base;
+    min-height: 3.25rem;
   }
 
   /* Primary: warm gradient + glow + shine sweep */

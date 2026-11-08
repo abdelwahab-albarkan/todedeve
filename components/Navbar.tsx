@@ -129,10 +129,13 @@ export function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
-          <a href={GUMROAD_URL} className="gumroad-button btn btn-primary btn-sm hidden sm:inline-flex">
-            <span>{BUY_BUTTON_TEXT}</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          {/* Visibility lives on the wrapper: gumroad.js's overlay CSS forces display on .gumroad-button */}
+          <span className="hidden sm:inline-flex">
+            <a href={GUMROAD_URL} className="gumroad-button btn btn-primary btn-sm whitespace-nowrap">
+              <span>{BUY_BUTTON_TEXT}</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </span>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -173,7 +176,7 @@ export function Navbar() {
             </a>
           ))}
         </nav>
-        <div className="mt-3 grid grid-cols-2 gap-2 border-t border-zinc-200 pt-3 dark:border-white/[0.08]">
+        <div className="mt-3 grid grid-cols-1 gap-2 border-t sm:grid-cols-2 border-zinc-200 pt-3 dark:border-white/[0.08]">
           <Link href="/dashboard" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1} className="btn btn-secondary btn-md">
             <PlayCircle className="h-4 w-4" />
             Live demo

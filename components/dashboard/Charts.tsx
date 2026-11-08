@@ -79,8 +79,8 @@ export function AreaChart({
   const areaPath = `${linePath} L ${points[points.length - 1].x} ${height - paddingY} L ${points[0].x} ${height - paddingY} Z`;
 
   return (
-    <div className="w-full select-none">
-      <div className="flex gap-3">
+    <div className="w-full select-none overflow-x-auto no-scrollbar">
+      <div className="flex gap-3 min-w-[420px] sm:min-w-0">
         {/* Y-Axis scale */}
         <div className="flex flex-col justify-between text-[11px] font-mono text-zinc-500 py-1 shrink-0 w-8 text-right">
           {yAxisLabels.map((lbl, idx) => (
@@ -240,7 +240,7 @@ export function DonutChart({
   let currentOffset = 0;
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-6 w-full">
+    <div className="flex flex-wrap items-center justify-center gap-6 w-full">
       
       {/* SVG Ring with Center Counter */}
       <div className="relative shrink-0" style={{ width: size, height: size }}>
@@ -291,15 +291,15 @@ export function DonutChart({
       </div>
 
       {/* Legend Column */}
-      <div className="flex-1 w-full space-y-2.5">
+      <div className="flex-1 min-w-[170px] space-y-2.5">
         {segments.map((seg, idx) => (
           <div key={idx} className="flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2.5">
+            <div className="flex min-w-0 items-center gap-2.5">
               <span
                 className="w-3 h-3 rounded-md shrink-0 shadow-sm"
                 style={{ backgroundColor: seg.color }}
               />
-              <span className="text-zinc-300 font-medium">{seg.label}</span>
+              <span className="text-zinc-300 font-medium truncate">{seg.label}</span>
             </div>
 
             <div className="flex items-center gap-3 font-mono">
@@ -332,7 +332,7 @@ interface ProductivityBarChartProps {
 export function ProductivityBarChart({ data }: ProductivityBarChartProps) {
   return (
     <div className="w-full">
-      <div className="flex items-end justify-between gap-3 h-48 pt-6 pb-2 px-2 border-b border-[#1E293B]">
+      <div className="flex items-end justify-between gap-1.5 sm:gap-3 h-48 pt-6 pb-2 px-2 border-b border-[#1E293B]">
         {data.map((item, idx) => (
           <div key={idx} className="flex-1 flex flex-col items-center h-full justify-end group">
             {/* Hover tooltip percentage */}
@@ -355,15 +355,15 @@ export function ProductivityBarChart({ data }: ProductivityBarChartProps) {
       </div>
 
       {/* Member Names & Avatars below */}
-      <div className="flex justify-between items-center gap-3 mt-3 px-2">
+      <div className="flex justify-between items-center gap-1.5 sm:gap-3 mt-3 px-2">
         {data.map((item, idx) => (
-          <div key={idx} className="flex-1 flex flex-col items-center text-center">
+          <div key={idx} className="flex-1 min-w-0 flex flex-col items-center text-center">
             <img
               src={item.avatar}
               alt={item.name}
               className="w-7 h-7 rounded-full object-cover border border-zinc-700 mb-1"
             />
-            <span className="text-xs font-medium text-zinc-300 truncate w-14">
+            <span className="text-xs font-medium text-zinc-300 truncate w-full max-w-14">
               {item.name}
             </span>
           </div>
