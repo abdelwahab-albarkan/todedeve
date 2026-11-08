@@ -192,6 +192,14 @@ export const PRICING_MATRIX: Record<number, Record<number, { price: string; pric
   },
 };
 
+/**
+ * Shareable link slug for a package, e.g. planSlug(3, 1) = "3-months-1-account".
+ * todedev.com/buy/<slug> redirects to that package's Gumroad checkout.
+ */
+export function planSlug(period: number, accounts: number) {
+  return `${period}-months-${accounts}-${accounts === 1 ? 'account' : 'accounts'}`;
+}
+
 export const PRICING_INCLUDED_ITEMS = [
   "Every version you receive stays yours to use, permanently",
   "Unlimited apps and client projects within the license terms",
