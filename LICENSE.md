@@ -28,3 +28,4 @@ This Commercial License Agreement (the "Agreement") is between you (the "License
 ## 4. Termination & Support
 - **Support Contact:** Official support is provided via email at [abdelwahabalbarkan2018@gmail.com](mailto:abdelwahabalbarkan2018@gmail.com).
 - **Termination:** Any breach of this Agreement terminates your rights under this license immediately.
+
