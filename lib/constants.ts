@@ -7,6 +7,7 @@
 
 export const BRAND_NAME = "TODEDEV";
 export const DOMAIN_NAME = "TODEDEV.COM";
+export const SITE_URL = "https://todedev.com";
 export const PRODUCT_NAME = "Developer Dashboard UI Kit Pro";
 export const PRODUCT_TAGLINE = "The ultimate dark SaaS admin dashboard UI kit for modern developers & teams.";
 export const PRODUCT_PRICE = "$39.99";

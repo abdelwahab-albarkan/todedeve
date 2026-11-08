@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight, PlayCircle } from 'lucide-react';
 import { BRAND_NAME, PRODUCT_NAME, BUY_BUTTON_TEXT, NAV_LINKS, PRICING_ANCHOR } from '@/lib/constants';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { cn } from '@/lib/utils';
+import { cn, sectionHref } from '@/lib/utils';
 
 export function BrandMark({ className }: { className?: string }) {
   return (
@@ -73,6 +73,23 @@ export function Navbar() {
   // The dashboard demo has its own sidebar + header
   if (pathname?.startsWith('/dashboard')) return null;
 
+  const href = (h: string) => sectionHref(h, pathname);
+
+  // Mobile menu links: the open menu locks body scroll, which blocks the
+  // anchor jump. Close it, release the lock, then scroll (CSS decides
+  // smooth vs reduced-motion). Links to other pages navigate normally.
+  const onMenuLink = (e: React.MouseEvent<HTMLAnchorElement>, h: string) => {
+    setOpen(false);
+    const target = h.startsWith('#') ? document.querySelector(h) : null;
+    if (!target) return;
+    e.preventDefault();
+    document.body.style.overflow = '';
+    requestAnimationFrame(() => {
+      target.scrollIntoView();
+      history.replaceState(null, '', h);
+    });
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full px-3 pt-3 sm:px-4">
       <div
@@ -111,7 +128,7 @@ export function Navbar() {
             return (
               <a
                 key={link.label}
-                href={link.href}
+                href={href(link.href)}
                 aria-current={isActive ? 'true' : undefined}
                 className={cn(
                   'relative rounded-lg px-3.5 py-1.5 text-sm font-medium transition-colors',
@@ -131,7 +148,7 @@ export function Navbar() {
           <ThemeToggle />
           {/* Visibility lives on the wrapper so the button's own display can't override `hidden` */}
           <span className="hidden sm:inline-flex">
-            <a href={PRICING_ANCHOR} className="btn btn-primary btn-sm whitespace-nowrap">
+            <a href={href(PRICING_ANCHOR)} className="btn btn-primary btn-sm whitespace-nowrap">
               <span>{BUY_BUTTON_TEXT}</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
@@ -161,8 +178,8 @@ export function Navbar() {
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
-              href={link.href}
-              onClick={() => setOpen(false)}
+              href={href(link.href)}
+              onClick={(e) => onMenuLink(e, link.href)}
               tabIndex={open ? 0 : -1}
               className={cn(
                 'flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors',
@@ -182,18 +199,8 @@ export function Navbar() {
             Live demo
           </Link>
           <a
-            href={PRICING_ANCHOR}
-            onClick={(e) => {
-              // The open menu locks body scroll, which blocks the anchor jump:
-              // close it, release the lock, then scroll (CSS decides smooth vs reduced-motion).
-              e.preventDefault();
-              setOpen(false);
-              document.body.style.overflow = '';
-              requestAnimationFrame(() => {
-                document.querySelector(PRICING_ANCHOR)?.scrollIntoView();
-                history.replaceState(null, '', PRICING_ANCHOR);
-              });
-            }}
+            href={href(PRICING_ANCHOR)}
+            onClick={(e) => onMenuLink(e, PRICING_ANCHOR)}
             tabIndex={open ? 0 : -1}
             className="btn btn-primary btn-md"
           >

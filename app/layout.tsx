@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import '@/app/globals.css';
-import { PRODUCT_NAME, PRODUCT_TAGLINE } from '@/lib/constants';
+import { BRAND_NAME, PRODUCT_NAME, PRODUCT_TAGLINE, SITE_URL } from '@/lib/constants';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -12,12 +12,28 @@ const inter = Inter({
   display: 'swap',
 });
 
+const SITE_TITLE = `${PRODUCT_NAME} — ${PRODUCT_TAGLINE}`;
+const SITE_DESCRIPTION =
+  'A complete, production-ready landing page and digital starter kit built with Next.js 14, TypeScript, and Tailwind CSS. One-time payment via Gumroad.';
+
+// Favicon (app/icon.svg) and share images (app/opengraph-image.tsx,
+// app/twitter-image.tsx) are picked up automatically by Next.js.
 export const metadata: Metadata = {
-  title: `${PRODUCT_NAME} — ${PRODUCT_TAGLINE}`,
-  description:
-    'A complete, production-ready landing page and digital starter kit built with Next.js 14, TypeScript, and Tailwind CSS. One-time payment via Gumroad.',
-  icons: {
-    icon: '/mockup-hero.svg',
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: BRAND_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
 };
 

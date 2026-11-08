@@ -23,3 +23,11 @@ export function optimizedImage(src: string) {
     srcSet: `/theme/${slug}-800.webp 800w, /theme/${slug}-1600.webp 1600w`,
   };
 }
+
+/**
+ * In-page section links ("#pricing") only exist on the landing page.
+ * Elsewhere (e.g. the 404 page) point them back home: "/#pricing".
+ */
+export function sectionHref(href: string, pathname: string | null) {
+  return href.startsWith('#') && pathname !== '/' ? `/${href}` : href;
+}
