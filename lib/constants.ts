@@ -206,6 +206,128 @@ export const PRICING_INCLUDED_ITEMS = [
   "Instant download from Gumroad: source ZIP + license certificate PDF",
 ];
 
+export interface DigitalSystemPlan {
+  id: string;
+  name: string;
+  period: string;
+  months: number;
+  price: string;
+  priceNumber: number;
+  perMonth: string;
+  badge?: string;
+  popular?: boolean;
+  recommended?: boolean;
+  description: string;
+  features: string[];
+  checkoutUrl: string;
+  slug: string;
+}
+
+export const DIGITAL_SYSTEM_NAME = "Digital Store & SaaS Dashboard";
+export const DIGITAL_SYSTEM_TAGLINE = "Complete admin dashboard for digital products, licenses, orders, coupons & sales.";
+
+export const DIGITAL_SYSTEM_PLANS: DigitalSystemPlan[] = [
+  {
+    id: "digital-1mo",
+    name: "1 Month Access",
+    period: "1 Month",
+    months: 1,
+    price: "$15",
+    priceNumber: 15,
+    perMonth: "$15 / mo",
+    description: "1 month of updates and bug fixes. Lifetime license for all downloaded code.",
+    features: [
+      "All 9 dashboard screens included",
+      "Coupons Management with code generator",
+      "Customer CRM with order history & LTV",
+      "Files & Delivery + License key generation",
+      "Zero-dependency SVG charts",
+      "1 month of version updates",
+      "Perpetual commercial use",
+    ],
+    checkoutUrl: "https://digitalservice02001.gumroad.com/l/todedev-digital-product-system-1-month?wanted=true",
+    slug: "1-month-digital-system",
+  },
+  {
+    id: "digital-3mo",
+    name: "3 Months Access",
+    period: "3 Months",
+    months: 3,
+    price: "$20",
+    priceNumber: 20,
+    perMonth: "$6.67 / mo",
+    description: "3 months of continuous updates, feature releases & improvements.",
+    features: [
+      "All 9 dashboard screens included",
+      "Coupons Management with code generator",
+      "Customer CRM with order history & LTV",
+      "Files & Delivery + License key generation",
+      "Zero-dependency SVG charts",
+      "3 months of version updates",
+      "Commercial license for client projects",
+      "Standard email support",
+    ],
+    checkoutUrl: "https://digitalservice02001.gumroad.com/l/todedev-digital-product-system-3-months?wanted=true",
+    slug: "3-months-digital-system",
+  },
+  {
+    id: "digital-6mo",
+    name: "6 Months Access",
+    period: "6 Months",
+    months: 6,
+    price: "$30",
+    priceNumber: 30,
+    perMonth: "$5.00 / mo",
+    popular: true,
+    badge: "Most Popular",
+    description: "6 months of updates & new modules. Perfect for growing digital stores & agencies.",
+    features: [
+      "All 9 dashboard screens included",
+      "Coupons Management with code generator",
+      "Customer CRM with order history & LTV",
+      "Files & Delivery + License key generation",
+      "Zero-dependency SVG charts",
+      "6 months of version updates",
+      "Commercial license: unlimited apps & clients",
+      "Priority email support",
+    ],
+    checkoutUrl: "https://digitalservice02001.gumroad.com/l/todedev-digital-product-system-6-months?wanted=true",
+    slug: "6-months-digital-system",
+  },
+  {
+    id: "digital-12mo",
+    name: "12 Months Access",
+    period: "12 Months",
+    months: 12,
+    price: "$45",
+    priceNumber: 45,
+    perMonth: "$3.75 / mo",
+    recommended: true,
+    badge: "Best Value",
+    description: "Full year of major updates, new SaaS modules & priority developer assistance.",
+    features: [
+      "All 9 dashboard screens included",
+      "Coupons Management with code generator",
+      "Customer CRM with order history & LTV",
+      "Files & Delivery + License key generation",
+      "Zero-dependency SVG charts",
+      "12 months of version updates & new screens",
+      "Commercial license: unlimited SaaS & client products",
+      "VIP priority developer support",
+    ],
+    checkoutUrl: "https://digitalservice02001.gumroad.com/l/todedev-digital-product-system-12-months?wanted=true",
+    slug: "12-months-digital-system",
+  },
+];
+
+export const DIGITAL_SYSTEM_INCLUDED_ITEMS = [
+  "All 9 responsive screens: Overview, Products, Orders, Customers, Coupons, Analytics & Settings",
+  "Coupons Management with automatic discount calculations & code generator",
+  "License key & digital file delivery management built-in",
+  "One-time payment with zero subscriptions or hidden fees",
+  "Permanent ownership of all downloaded code",
+];
+
 export interface FaqItem {
   id: string;
   question: string;

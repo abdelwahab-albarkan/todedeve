@@ -7,6 +7,7 @@ import { Menu, X, ArrowRight, PlayCircle } from 'lucide-react';
 import { BRAND_NAME, PRODUCT_NAME, BUY_BUTTON_TEXT, NAV_LINKS, PRICING_ANCHOR } from '@/lib/constants';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { cn, sectionHref } from '@/lib/utils';
+import { useDemoModal } from '@/components/DemoModalContext';
 
 export function BrandMark({ className }: { className?: string }) {
   return (
@@ -29,6 +30,7 @@ export function BrandMark({ className }: { className?: string }) {
 
 export function Navbar() {
   const pathname = usePathname();
+  const { openDemoModal } = useDemoModal();
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [active, setActive] = React.useState<string>('');
@@ -71,7 +73,7 @@ export function Navbar() {
   }, [open]);
 
   // The dashboard demo has its own sidebar + header
-  if (pathname?.startsWith('/dashboard')) return null;
+  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/demo')) return null;
 
   const href = (h: string) => sectionHref(h, pathname);
 
@@ -125,6 +127,22 @@ export function Navbar() {
         >
           {NAV_LINKS.map((link) => {
             const isActive = active === link.href;
+            if (link.label === 'Live Demo') {
+              return (
+                <button
+                  key={link.label}
+                  type="button"
+                  onClick={openDemoModal}
+                  className="relative rounded-lg px-3.5 py-1.5 text-sm font-semibold text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
+                  </span>
+                  <span>{link.label}</span>
+                </button>
+              );
+            }
             return (
               <a
                 key={link.label}
@@ -175,29 +193,62 @@ export function Navbar() {
         )}
       >
         <nav className="grid gap-1" aria-label="Mobile navigation">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={href(link.href)}
-              onClick={(e) => onMenuLink(e, link.href)}
-              tabIndex={open ? 0 : -1}
-              className={cn(
-                'flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors',
-                active === link.href
-                  ? 'bg-orange-500/10 text-orange-600 dark:text-orange-400'
-                  : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-white/[0.05]'
-              )}
-            >
-              {link.label}
-              <ArrowRight className="h-4 w-4 opacity-40" />
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            if (link.label === 'Live Demo') {
+              return (
+                <button
+                  key={link.label}
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    openDemoModal();
+                  }}
+                  tabIndex={open ? 0 : -1}
+                  className="flex items-center justify-between w-full rounded-xl px-4 py-3 text-base font-semibold text-orange-500 hover:bg-orange-500/10 transition-colors text-left"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
+                    </span>
+                    {link.label}
+                  </span>
+                  <ArrowRight className="h-4 w-4 opacity-40" />
+                </button>
+              );
+            }
+            return (
+              <a
+                key={link.label}
+                href={href(link.href)}
+                onClick={(e) => onMenuLink(e, link.href)}
+                tabIndex={open ? 0 : -1}
+                className={cn(
+                  'flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors',
+                  active === link.href
+                    ? 'bg-orange-500/10 text-orange-600 dark:text-orange-400'
+                    : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-white/[0.05]'
+                )}
+              >
+                {link.label}
+                <ArrowRight className="h-4 w-4 opacity-40" />
+              </a>
+            );
+          })}
         </nav>
         <div className="mt-3 grid grid-cols-1 gap-2 border-t sm:grid-cols-2 border-zinc-200 pt-3 dark:border-white/[0.08]">
-          <Link href="/dashboard" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1} className="btn btn-secondary btn-md">
-            <PlayCircle className="h-4 w-4" />
-            Live demo
-          </Link>
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              openDemoModal();
+            }}
+            tabIndex={open ? 0 : -1}
+            className="btn btn-secondary btn-md cursor-pointer"
+          >
+            <PlayCircle className="h-4 w-4 text-orange-500" />
+            Explore Live Demos
+          </button>
           <a
             href={href(PRICING_ANCHOR)}
             onClick={(e) => onMenuLink(e, PRICING_ANCHOR)}

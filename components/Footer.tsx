@@ -44,7 +44,7 @@ const COLUMNS = [
 
 export function Footer() {
   const pathname = usePathname();
-  if (pathname?.startsWith('/dashboard')) return null;
+  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/demo')) return null;
 
   const currentYear = new Date().getFullYear();
   // Keep any extra link added to FOOTER_LINKS visible

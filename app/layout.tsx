@@ -5,6 +5,7 @@ import { BRAND_NAME, PRODUCT_NAME, PRODUCT_TAGLINE, SITE_URL } from '@/lib/const
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { DemoModalProvider } from '@/components/DemoModalContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -60,11 +61,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <DemoModalProvider>
+            <div className="flex min-h-screen flex-col">
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </DemoModalProvider>
         </ThemeProvider>
       </body>
     </html>

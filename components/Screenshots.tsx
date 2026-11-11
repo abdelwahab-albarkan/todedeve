@@ -1,10 +1,14 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { ExternalLink, Sparkles, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SCREENSHOTS_LIST } from '@/lib/constants';
 import { cn, optimizedImage } from '@/lib/utils';
+import { useDemoModal } from '@/components/DemoModalContext';
 
 export function Screenshots() {
+  const { openDemoModal } = useDemoModal();
   return (
     <section
       id="showcase"
@@ -103,10 +107,14 @@ export function Screenshots() {
 
         {/* Global Live Demo CTA */}
         <div className="mt-14 text-center">
-          <Link href="/dashboard" className="btn btn-primary btn-lg group w-full sm:w-auto">
+          <button
+            type="button"
+            onClick={openDemoModal}
+            className="btn btn-primary btn-lg group w-full sm:w-auto cursor-pointer"
+          >
             <span>Launch Complete Dashboard Demo</span>
             <ExternalLink className="h-4 w-4" />
-          </Link>
+          </button>
         </div>
       </div>
     </section>

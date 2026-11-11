@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, ShieldCheck, PlayCircle, TrendingUp, CheckCircle2 } from 'lucide-react';
@@ -11,6 +13,7 @@ import {
 } from '@/lib/constants';
 import { BuyButton } from '@/components/BuyButton';
 import { optimizedImage } from '@/lib/utils';
+import { useDemoModal } from '@/components/DemoModalContext';
 
 const STATS = [
   { value: '10', label: 'Responsive screens' },
@@ -22,6 +25,7 @@ const STATS = [
 const STACK = ['Next.js 14', 'React 18', 'TypeScript 5', 'Tailwind CSS', 'App Router', 'Dark & Light'];
 
 export function Hero() {
+  const { openDemoModal } = useDemoModal();
   const heroImg = optimizedImage('/theme/TODEDEV Neon Dashboard Overview.png');
 
   return (
@@ -61,10 +65,14 @@ export function Hero() {
               <span>Buy Now — {PRODUCT_PRICE}</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </BuyButton>
-            <Link href="/dashboard" className="btn btn-secondary btn-lg group">
+            <button
+              type="button"
+              onClick={openDemoModal}
+              className="btn btn-secondary btn-lg group cursor-pointer"
+            >
               <PlayCircle className="h-4 w-4 text-orange-500" />
               <span>Explore Live Demo</span>
-            </Link>
+            </button>
           </div>
 
           <p className="mt-5 flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
@@ -89,10 +97,11 @@ export function Hero() {
                 app.todedev.com/dashboard
               </span>
             </div>
-            <Link
-              href="/dashboard"
-              className="group relative block overflow-hidden rounded-xl border border-zinc-200/80 bg-[#0D1424] sm:rounded-2xl dark:border-white/[0.06]"
-              aria-label="Open the live dashboard demo"
+            <button
+              type="button"
+              onClick={openDemoModal}
+              className="group relative block w-full text-left overflow-hidden rounded-xl border border-zinc-200/80 bg-[#0D1424] sm:rounded-2xl dark:border-white/[0.06] cursor-pointer"
+              aria-label="Open the live dashboard demo chooser"
             >
               <img
                 src={heroImg.src}
@@ -105,7 +114,7 @@ export function Hero() {
                 decoding="async"
                 className="h-auto w-full transition-transform duration-700 group-hover:scale-[1.015]"
               />
-            </Link>
+            </button>
           </div>
 
           {/* Floating chips */}
